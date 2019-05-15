@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+
+const Statistic = (props) => {
+  return (
+    <div>
+    {props.name} : {props.value} <br/>
+    </div>
+  )
+}
+
 const Statistics = (props) => {
 
     let {good, bad, neutral}= props
@@ -8,13 +17,21 @@ const Statistics = (props) => {
     if (good+bad+neutral === 0) return (<div>Ei yhtään palautetta annettu</div>)
 
     return (<div>
-            Hyvä: {good} <br/>
-            Neutraali: {neutral}<br/>
-            Huono: {bad}<br/>
+            <Statistic name="hyvä" value={good}/>
+            <Statistic name="neutraali" value={neutral} />
+            <Statistic name ="huono" value = {bad}/>
             Keskiarvo:{(good-bad)/(good+bad+neutral)}<br/>
             Positiivisia: {100*good/(good+bad+neutral)}%
       </div>
 )
+}
+
+
+const Button = (props) => {
+
+  return (
+    <button onClick={props.handleclick} type="button">{props.text}</button> 
+  )
 }
 
 const App = () => {
@@ -25,16 +42,12 @@ const App = () => {
 
   return (
     <div>
-        <h1>Anna Palautetta:</h1>
-       <button onClick={()=>setGood(good+1)} type="button">Hyvä</button> 
-       <button onClick={()=>setNeutral(neutral+1)} type="button">Neutraali</button> 
-       <button onClick={()=>setBad(bad+1)} type="button">Huono</button> 
-      <h2>Statistiikka:</h2>
- 
-
-            <Statistics good={good} neutral={neutral} bad = {bad}/>
-
-
+    <h1>Anna Palautetta:</h1>
+        <Button handleclick={()=>setGood(good+1)} text="Hyvä"/> 
+        <Button handleclick={()=>setNeutral(neutral+1)} text="Neutraali"/> 
+        <Button handleclick={()=>setBad(bad+1)} text="Huono"/> 
+        <h2>Statistiikka:</h2>
+        <Statistics good={good} neutral={neutral} bad = {bad}/>
     </div>
   )
 }
