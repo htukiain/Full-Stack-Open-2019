@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom'
 
 const Statistic = (props) => {
   return (
-    <div>
-    {props.name} : {props.value} <br/>
-    </div>
+    <tr> 
+      <td>{props.name} </td><td> {props.value} </td>  
+   </tr>
+ 
   )
 }
 
@@ -16,12 +17,13 @@ const Statistics = (props) => {
 
     if (good+bad+neutral === 0) return (<div>Ei yhtään palautetta annettu</div>)
 
-    return (<div>
+    return (<div><table><tbody>
             <Statistic name="hyvä" value={good}/>
             <Statistic name="neutraali" value={neutral} />
             <Statistic name ="huono" value = {bad}/>
-            Keskiarvo:{(good-bad)/(good+bad+neutral)}<br/>
-            Positiivisia: {100*good/(good+bad+neutral)}%
+            <tr><td>Keskiarvo</td><td> {(good-bad)/(good+bad+neutral)} </td></tr>
+            <tr><td>Positiivisia</td><td> {100*good/(good+bad+neutral)}%</td></tr>
+            </tbody></table>
       </div>
 )
 }
