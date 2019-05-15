@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const Statistics = (props) => {
 
+let {good, bad, neutral}= props
+
+    return (<div>
+      Keskiarvo:{(good-bad)/(good+bad+neutral)}<br/>
+      Positiivisia: {100*good/(good+bad+neutral)}%
+      </div>
+)
+}
 
 const App = () => {
   // tallenna napit omaan tilaansa
@@ -22,8 +31,7 @@ const App = () => {
        Hyvä: {good} <br/>
         Neutraali: {neutral}<br/>
        Huono: {bad}<br/>
-      Keskiarvo:{(good-bad)/(good+bad+neutral)}<br/>
-      Positiivisia: {100*good/(good+bad+neutral)}%
+    <Statistics good={good} neutral={neutral} bad = {bad}/>
     </div>
   )
 }
