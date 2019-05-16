@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom'
 const App = (props) => {
   const [selected, setSelected] = useState(0)
 
-  var initialarray = Array(6).fill(0)
+  var initialarray = Array(6).fill(1)
   const [votes, setVote] = useState(initialarray)
 
   const Vote =() => {
@@ -18,13 +18,27 @@ const App = (props) => {
   
   }
 
+  const Biggestvote = () => {
+    const copy = {...votes}
+    
+    return (
+      <h2> Juttu
+      {Math.max(...copy)}
+      {copy}
+      </h2>
+    )
+    
+  }
+
   return (
     <div>
-        
+      <h1>Anecdote of the day </h1>
       <p> {anecdotes[selected]} </p>
       <p> has {votes[selected]} votes </p>
       <button onClick={()=>setSelected( Math.floor(Math.random() *6))} type="button">Next anecdote</button> 
       <button onClick={()=>Vote(selected)} type="button">Vote</button> 
+      <h1>Anecdote with most votes</h1>
+      <Biggestvote/>
     </div>
   )
 }
