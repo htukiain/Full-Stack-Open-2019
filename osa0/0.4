@@ -1,0 +1,18 @@
+Käyttäjä kirjoittaa kenttään + painaa talleta
+Selain lähettää POST baseur/newnote palvelimelle
+    Palvelin ottaa vastaan ja vastaa responsella 302.
+Selain lähettää GET baseur/notes
+    Palvelin vastaa HTML dokumentilla jossa sivun koodi
+Selain lähettää GET baseur/favicon.ico
+    Palvlein vastaa Favicon kuvalla selaimelle
+Selain lähettää GET baseurl/main.js
+    Palvelin vastaa javascritpillä
+Selain lähettää GET main.css
+    Palvlein vastaa CSS-filellä
+
+Selain suorittaa javascriptikoodin. 
+    Js-koodissa pyydetään selaimen GET data.json (javascriptistä)
+    Palvelin vastaa JSONilla jossa päivitetty lista noteja
+
+Selain suorittaa tapahtuman käsittelijän
+joka renderöi päivitetyn notes listan näytölle.
