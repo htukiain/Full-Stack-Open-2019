@@ -1,0 +1,10 @@
+SPA sovellus on ladattu, javascript on käynnistynyt selaimeen ja JSOn renderoitu.
+
+Käyttäjä kirjoittaa kenttään ja painaa nappia. Napin painaminen liipaisee tapahtuman käsittelijän.
+Tapahtumankäsittleijä päivittää DOMissa olevaa listaa, ja lisää siihen uuden noten.
+Selain renderoi tämän näytölle.
+
+Selain lähettää POST-viestin baseurl/new_note_spa palvelimelle
+    palvelin käsittelee ja vastaa viestiin jsonilla "note created" ja koodilla 201 - kaikki ok
+    palvelin tallentaa tämän viestin, että seuraava kävijä saa pidemmän listan.
+
