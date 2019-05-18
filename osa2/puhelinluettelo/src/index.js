@@ -5,11 +5,14 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas',
-      number:'0400 - 212' }
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Martti Tienari', number: '040-123456' },
+    { name: 'Arto Järvinen', number: '040-123456' },
+    { name: 'Lea Kutvonen', number: '040-123456' }
   ]) 
   const [ newName, setNewName ] = useState('Anna nimi')
   const [ newNumber, setNewnumber ] = useState('Anna numero')
+  const [ newFilter, setNewfilter ] = useState('')
 
 const addName = (event) => {
   event.preventDefault()    
@@ -51,9 +54,24 @@ const handleNumberchange = (event) => {
   setNewnumber(event.target.value)  
 }
 
+const handleFilterchange = (event) => {   
+  //console.log(event.target.value)    
+  setNewfilter(event.target.value)  
+}
+
+
+const Persontoshow = persons.filter(person => person.name.indexOf(newFilter)===0 )
+
+
   return (
     <div>
-      <h2>Puhelinluettelo</h2>
+      <h1>Puhelinluettelo</h1>
+      <div>
+          Rajaa näytettäviä: <input value={newFilter}
+          onChange={handleFilterchange}
+          />
+        </div>
+              <h2>Lisää uusi</h2>
       <form onSubmit={addName}>
         <div>
           nimi: <input value={newName}
@@ -72,7 +90,13 @@ const handleNumberchange = (event) => {
       </form>
       <h2>Numerot</h2>
       <ul>
-      {persons.map (person =><li key={person.name}>{person.name} {person.number} </li>)}
+      {Persontoshow.map ((person) => 
+      
+            <li key={person.name}>{person.name} {person.number}</li>
+      
+      )
+      }
+
       </ul>
     </div>
   )
