@@ -60,7 +60,7 @@ const handleFilterchange = (event) => {
 }
 
 
-const Persontoshow = persons.filter(person => person.name.indexOf(newFilter)===0 )
+const Persontoshow = persons.filter(person => person.name.toLowerCase().indexOf(newFilter.toLowerCase())===0 )
 
 
   return (
