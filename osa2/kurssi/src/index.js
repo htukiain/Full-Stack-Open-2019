@@ -8,6 +8,7 @@ const Course = (props) => {
       <div>
       <Header name ={props.course.name} />
       <Content courses= {props.course.parts}/>
+      <Footer courses = {props.course.parts} />
       </div>
     )
 }
@@ -19,8 +20,6 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-
-  console.log(props)
   return (
 
     props.courses.map (part  =>
@@ -39,6 +38,18 @@ const Part = (props) => {
   return ( <div>{props.name} {props.exercises}</div>)
  
 }
+
+const Footer = (props) => {
+
+  const reducer = (accumulator, currentValue) => accumulator + currentValue.exercises;
+  
+  return (
+
+    <div> Yhteensä  {props.courses.reduce(reducer,0)} tehtävää </div>
+
+  )
+}
+
 
 const App = () => {
   const course = {
