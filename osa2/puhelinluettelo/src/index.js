@@ -7,20 +7,38 @@ const App = () => {
   const [ persons, setPersons] = useState([
     { name: 'Arto Hellas' }
   ]) 
-  const [ newName, setNewName ] = useState('')
+  const [ newName, setNewName ] = useState('Anna nimi')
 
 const addName = (event) => {
   event.preventDefault()    
-  const nameObject = {
-    name: newName
-  }
+ 
+  let duplikaatti = false
+  
+  persons.forEach(function(item, index) {
+  if (item.name === newName) {
+    setNewName('')
+    duplikaatti = true
+    //console.log(duplikaatti)
+    alert (`${newName} on jo olemassa`)
 
+  }
+  });
+
+
+ // console.log("superalku",duplikaatti)
+  if (!duplikaatti){
+    //console.log ("alussa", newName)
+    const nameObject = {
+          name: newName
+        }
+   
   setPersons(persons.concat(nameObject))
   setNewName('')
+    }
 }
 
 const handleNamechange = (event) => {   
-   console.log(event.target.value)    
+   //console.log(event.target.value)    
    setNewName(event.target.value)  
 }
 
