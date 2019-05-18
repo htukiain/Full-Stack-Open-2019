@@ -5,9 +5,11 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [ persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas',
+      number:'0400 - 212' }
   ]) 
   const [ newName, setNewName ] = useState('Anna nimi')
+  const [ newNumber, setNewnumber ] = useState('Anna numero')
 
 const addName = (event) => {
   event.preventDefault()    
@@ -29,7 +31,8 @@ const addName = (event) => {
   if (!duplikaatti){
     //console.log ("alussa", newName)
     const nameObject = {
-          name: newName
+          name: newName,
+          number: newNumber
         }
    
   setPersons(persons.concat(nameObject))
@@ -42,6 +45,12 @@ const handleNamechange = (event) => {
    setNewName(event.target.value)  
 }
 
+
+const handleNumberchange = (event) => {   
+  //console.log(event.target.value)    
+  setNewnumber(event.target.value)  
+}
+
   return (
     <div>
       <h2>Puhelinluettelo</h2>
@@ -52,12 +61,18 @@ const handleNamechange = (event) => {
           />
         </div>
         <div>
+          numero: <input value={newNumber}
+          onChange= {handleNumberchange}
+        />
+
+        </div>
+        <div>
           <button type="submit">lisää</button>
         </div>
       </form>
       <h2>Numerot</h2>
       <ul>
-      {persons.map (person =><li key={person.name}>{person.name} </li>)}
+      {persons.map (person =><li key={person.name}>{person.name} {person.number} </li>)}
       </ul>
     </div>
   )
