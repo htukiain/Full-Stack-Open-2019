@@ -1,5 +1,8 @@
 import ReactDOM from 'react-dom'
 import React, { useState } from 'react'
+import Filter from './components/Filter'
+import Personform from './components/Personform'
+import Personlist from './components/Personlist'
 
 
 
@@ -22,6 +25,7 @@ const addName = (event) => {
   persons.forEach(function(item, index) {
   if (item.name === newName) {
     setNewName('')
+    setNewnumber('')
     duplikaatti = true
     //console.log(duplikaatti)
     alert (`${newName} on jo olemassa`)
@@ -60,44 +64,35 @@ const handleFilterchange = (event) => {
 }
 
 
-const Persontoshow = persons.filter(person => person.name.toLowerCase().indexOf(newFilter.toLowerCase())===0 )
 
 
   return (
     <div>
       <h1>Puhelinluettelo</h1>
-      <div>
-          Rajaa näytettäviä: <input value={newFilter}
+
+      <Filter 
+          value={newFilter}
           onChange={handleFilterchange}
-          />
-        </div>
-              <h2>Lisää uusi</h2>
-      <form onSubmit={addName}>
-        <div>
-          nimi: <input value={newName}
-          onChange={handleNamechange}
-          />
-        </div>
-        <div>
-          numero: <input value={newNumber}
-          onChange= {handleNumberchange}
         />
+    
+      <h2>Lisää uusi</h2>
+      
+      <Personform 
+        onSubmit_1={addName}
+        value_1={newName}
+        onChange_1={handleNamechange}
+        value_2={newNumber}
+        onChange_2= {handleNumberchange}
+        />
+      
 
-        </div>
-        <div>
-          <button type="submit">lisää</button>
-        </div>
-      </form>
       <h2>Numerot</h2>
-      <ul>
-      {Persontoshow.map ((person) => 
-      
-            <li key={person.name}>{person.name} {person.number}</li>
-      
-      )
-      }
 
-      </ul>
+      <Personlist 
+        persons={persons} 
+        filter={newFilter
+        }/>
+
     </div>
   )
 
