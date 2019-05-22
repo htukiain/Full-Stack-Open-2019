@@ -14,6 +14,22 @@ const App = () => {
   const [ newNumber, setNewnumber ] = useState('Anna numero')
   const [ newFilter, setNewfilter ] = useState('')
 
+  const startDelete = (event) => {
+    console.log ("delete pressed",event.target.id)
+    let poistettavaid= event.target.id
+    let nimi = persons.filter (person => person.id === event.target.id)
+    console.log (nimi)
+
+    window.confirm(`Are you sure to delete ${nimi}`);
+    personService
+    .deletenumber(event.target.id)
+    .then( setPersons(persons.filter(person => person.id !== poistettavaid )) ) 
+
+    
+
+
+}
+
 
   useEffect(() => {
     personService
@@ -48,10 +64,11 @@ const addName = (event) => {
    
     personService
       .create(nameObject)    
-      .then(response => {console.log(response)    })
+      .then(response => { setPersons(persons.concat(response))   
       setNewName('')
-
-    }
+    })
+    
+}
 }
 
 const handleNamechange = (event) => {   
@@ -97,8 +114,9 @@ const handleFilterchange = (event) => {
 
       <Personlist 
         persons={persons} 
-        filter={newFilter
-        }/>
+        filter={newFilter}
+        call ={startDelete}
+        />
 
     </div>
   )

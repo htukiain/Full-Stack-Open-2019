@@ -1,19 +1,7 @@
 import React from 'react'
-import personService from '../services/persons'
-
 
 const Personslist = (props) => {
 
-    const startDelete = (event) => {
-        console.log ("delete pressed",event.target.id)
-
-        window.confirm("Are you sure to delete");
-        personService
-        .deletenumber(event.target.id)    
-        .then(response => {console.log(response)    })
-    
-
-    }
 
     const persons=props.persons
 
@@ -26,7 +14,7 @@ const Personslist = (props) => {
         
               <li key={person.name}>
               {person.name} {person.number} 
-              <button id={person.id} onClick={startDelete}> Poista</button></li>
+              <button id={person.id} onClick={props.call}> Poista</button></li>
         
         )
         }
