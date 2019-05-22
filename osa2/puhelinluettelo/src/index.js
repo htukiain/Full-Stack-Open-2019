@@ -3,8 +3,7 @@ import React, { useState, useEffect  } from 'react'
 import Filter from './components/Filter'
 import Personform from './components/Personform'
 import Personlist from './components/Personlist'
-
-import axios from 'axios'
+import personService from './services/persons'
 
 
 
@@ -17,9 +16,9 @@ const App = () => {
 
 
   useEffect(() => {
-    axios
-    .get('http://localhost:3001/persons')
-    .then(response => {console.log(response.date); setPersons(response.data)})  }, [])
+    personService
+    .getAll()
+    .then(response => {setPersons(response)})  }, [])
   
 
 const addName = (event) => {
@@ -47,8 +46,8 @@ const addName = (event) => {
           number: newNumber
         }
    
-    axios
-      .post('http://localhost:3001/persons', nameObject)    
+    personService
+      .create(nameObject)    
       .then(response => {console.log(response)    })
       setNewName('')
 
